@@ -32,7 +32,7 @@ export default function Login(){
             <div className="w-fit px-10 py-5 m-auto flex flex-col justify-center items-center z-20">
                 <Image src="/img/logotipo.jpeg" alt="logotipo Cuauhtémoc IPN" width={100} height={100} className="mb-5 rounded-full"/>
                 <h2 className="text-white font-bold text-xl">Login Cuauhtémoc IPN</h2>
-                <Input type="email" variant="underlined" label="Email" className="mb-5" color="white" value={email} onValueChange={setEmail}/>
+                <Input type="email" variant="underlined" label="Email" className="mb-5" classNames="text-white" value={email} onValueChange={setEmail}/>
                 <Input
                     label="Password"
                     variant="underlined"
@@ -47,7 +47,7 @@ export default function Login(){
                         </button>
                     }
                     type={isVisible ? "text" : "password"}
-                    className="max-w-xs"
+                    className="max-w-xs text-white"
                     value={password}
                     onValueChange={setPassword}
                 />
