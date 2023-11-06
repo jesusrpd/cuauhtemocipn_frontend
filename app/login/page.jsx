@@ -25,6 +25,7 @@ export default function Login(){
         Cookie.set("token", JSON.stringify(response.data.data.token), {path: '/'});
         router.push('/dashboard/inicio');
     };
+    
 
     return(
         <main className="w-full min-h-screen flex items-center bg-hero-login bg-cover">
