@@ -125,8 +125,8 @@ export default function Rifas(){
         const token = JSON.parse(Cookie.get('token'));
         console.log(giveway);
         const response = await axios.post(`${process.env.NEXT_PUBLIC_URL_API}/createGiveway`, giveway, {headers: {'Authorization': `Bearer ${token}`}});
-        console.log(response.data);
-        setShowQR("hola muno")
+        console.log(response.data.data);
+        setShowQR(`${process.env.NEXT_PUBLIC_URL_FRONT}/rifa/${response.data.data._id}`);
         const giveways = await axios.get(`${process.env.NEXT_PUBLIC_URL_API}/getGiveways`, {headers: {'Authorization': `Bearer ${token}`}});
         if(response.data.success){
 
@@ -159,7 +159,7 @@ export default function Rifas(){
                       />
                       <div className="flex flex-col">
                         <p className="text-md">{g.title}</p>
-                        <p className="text-small text-default-500">{g.total_tickets}</p>
+                        <p className="text-small text-default-500">Boletos: {g.total_tickets}</p>
                       </div>
                     </CardHeader>
                     <Divider/>
@@ -168,13 +168,9 @@ export default function Rifas(){
                     </CardBody>
                     <Divider/>
                     <CardFooter>
-                      <Link
-                        isExternal
-                        showAnchorIcon
-                        href="https://github.com/nextui-org/nextui"
-                      >
-                        Visit source code on GitHub.
-                      </Link>
+                      <Button color="warning" variant="solid" endContent={<ion-icon name="qr-code-outline"></ion-icon>}>
+                        Ver QR
+                      </Button>
                     </CardFooter>
                   </Card>
                 ))
