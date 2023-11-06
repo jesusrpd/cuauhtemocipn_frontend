@@ -24,6 +24,7 @@ export default function Rifas(){
         awards: [],
         bases: [],
         expiration_date: new Date().toISOString().split('T')[0],
+        cost_for_ticket: 0
     });
     const [dataAward, setDataAward] = useState({
         name: '',
@@ -188,7 +189,7 @@ export default function Rifas(){
                             <h3>Detalles</h3>
                             <div className="flex flex-wrap">
                                 <Input type="text" variant="underlined" label="Titulo de la rifa" size="sm" color="warning" className="mr-2 text-white" value={giveway.title} name="title" onChange={handleChangeGivewayInput}/>
-                                <div className="flex items-center w-full justify-between">
+                                <div className="flex items-center w-full justify-between flex-wrap">
                                     <Input
                                         type="number"
                                         label="Núm. de boletos"
@@ -198,6 +199,18 @@ export default function Rifas(){
                                         name="total_tickets"
                                         color="warning"
                                         onChange={handleChangeGivewayInput}
+                                        className="w-2/5 mr-2"
+                                    />
+                                    <Input type="date" variant="underlined" label="Fecha fin de la rifa" size="sm" color="warning" className="w-2/5 ml-2" min={new Date().toISOString().split('T')[0]} name="expiration_date" value={giveway.expiration_date} onChange={handleChangeGivewayInput}/>
+                                    <Input
+                                        type="number"
+                                        label="Costo por boleto"
+                                        value={giveway.cost_for_ticket}
+                                        variant="underlined"
+                                        name="cost_for_ticket"
+                                        color="warning"
+                                        placeholder="0"
+                                        onChange={handleChangeGivewayInput}
                                         endContent={
                                             <div className="pointer-events-none flex items-center">
                                             <span className="text-default-400 text-small">$</span>
@@ -205,7 +218,6 @@ export default function Rifas(){
                                         }
                                         className="w-1/2 mr-2"
                                     />
-                                    <Input type="date" variant="underlined" label="Fecha fin de la rifa" size="sm" color="warning" className="w-1/2 ml-2" min={new Date().toISOString().split('T')[0]} name="expiration_date" value={giveway.expiration_date} onChange={handleChangeGivewayInput}/>
                                 </div>
                             </div>
                             <Divider className="my-4 bg-green-500 opacity-20" />
