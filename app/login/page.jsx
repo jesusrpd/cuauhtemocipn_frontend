@@ -14,11 +14,13 @@ export default function Login(){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isVisible, setIsVisible] = useState(false);
+    const [isLoadder, setIsLoadder] = useState(false);
     const router = useRouter();
 
     const toggleVisibility = () => setIsVisible(!isVisible);
 
     const handleSubmit = async () => {
+        setIsLoadder(!isLoadder);
         const response = await axios.post(`${process.env.NEXT_PUBLIC_URL_API}/login`, {email, password});
         console.log(response.data.data);
         Cookie.set("user", JSON.stringify(response.data.data.user), {path: '/'});
@@ -33,7 +35,7 @@ export default function Login(){
             <div className="w-fit px-10 py-5 m-auto flex flex-col justify-center items-center z-20">
                 <Image src="/img/logotipo.jpeg" alt="logotipo Cuauhtémoc IPN" width={100} height={100} className="mb-5 rounded-full"/>
                 <h2 className="text-white font-bold text-xl">Login Cuauhtémoc IPN</h2>
-                <Input type="email" variant="underlined" label="Email" className="mb-5" classNames="text-white" value={email} onValueChange={setEmail}/>
+                <Input type="email" variant="underlined" label="Email" className="mb-5 text-white" classNames="text-white" value={email} onValueChange={setEmail}/>
                 <Input
                     label="Password"
                     variant="underlined"
@@ -52,7 +54,7 @@ export default function Login(){
                     value={password}
                     onValueChange={setPassword}
                 />
-                <Button radius="full" variant="shadow" color="success" className="mt-5 w-full" onPress={handleSubmit}>Iniciar Sesión</Button>
+                <Button isLoading={isLoadder?true:false} radius="full" variant="shadow" color="success" className="mt-5 w-full" onPress={handleSubmit}>Iniciar Sesión</Button>
             </div>
         </main>
     )
