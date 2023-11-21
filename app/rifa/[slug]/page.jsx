@@ -55,6 +55,7 @@ export default function RifaPage({params}){
 
     useEffect(() => {
         getGiveway();
+        emailjs.init(process.env.NEXT_PUBLIC_INIT_EMAILJS)
     }, [getGiveway]);
 
     const handleSelectTicket = ticket => {
@@ -109,7 +110,7 @@ export default function RifaPage({params}){
             })
             const data = await response.json();
             console.log(data.data._id)
-            emailjs.init(process.env.NEXT_PUBLIC_INIT_EMAILJS)
+            
             const sendFeedback = (templateID, variables) => {
                 emailjs.send(process.env.NEXT_PUBLIC_EMAILJS_SERVICE, templateID, variables, process.env.NEXT_PUBLIC_USER_ID).then( res => {
                     console.log(res);
