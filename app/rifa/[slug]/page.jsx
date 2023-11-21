@@ -3,7 +3,7 @@ import { useEffect, useState, useCallback, useRef } from "react";
 import axios from 'axios';
 import {Card, CardHeader, CardBody, CardFooter, Divider, Image, ScrollShadow, Input, Button} from "@nextui-org/react";
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure, Chip, Select, SelectItem} from "@nextui-org/react";
-import emailjs from "emailjs-com";
+import emailjs from "@emailjs/browser";
 
 export default function RifaPage({params}){
 
