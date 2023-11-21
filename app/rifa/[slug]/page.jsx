@@ -112,7 +112,7 @@ export default function RifaPage({params}){
             console.log(data.data._id)
             
             const sendFeedback = (templateID, variables) => {
-                emailjs.send(process.env.NEXT_PUBLIC_EMAILJS_SERVICE, templateID, variables, process.env.NEXT_PUBLIC_USER_ID).then( res => {
+                emailjs.send(process.env.NEXT_PUBLIC_EMAILJS_SERVICE, templateID, variables).then( res => {
                     console.log(res);
                 }).catch(err => {
                     console.log(err, "No se envío el correo");
