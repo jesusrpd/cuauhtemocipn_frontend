@@ -7,6 +7,7 @@ import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDis
 import Cookie from 'js-cookie';
 import Image from "next/image";
 import QRCode from 'qrcode.react';
+import { useRouter } from "next/navigation";
 
 export default function Rifas(){
 
@@ -32,7 +33,8 @@ export default function Rifas(){
         img: null
     });
     const [showQR, setShowQR] = useState(null)
-    const [rule, setRule] = useState('')
+    const [rule, setRule] = useState('');
+    const router = useRouter()
 
     useEffect(() => {
         const getGiveways = async () => {
@@ -68,7 +70,7 @@ export default function Rifas(){
         }
         if(file){
           reader.readAsDataURL(file);
-        } 
+        }
     }
 
     const handleCancelAward = () => {
@@ -123,6 +125,8 @@ export default function Rifas(){
 
     const handleCreateGiveway = async () => {
         setCreateGivewayLoadding(!createGivewayLoadding);
+        const formData = new FormData()
+        formData.append("giveway", giveway)
         const token = JSON.parse(Cookie.get('token'));
         console.log(giveway);
         const response = await axios.post(`${process.env.NEXT_PUBLIC_URL_API}/createGiveway`, giveway, {headers: {'Authorization': `Bearer ${token}`}});
@@ -169,8 +173,8 @@ export default function Rifas(){
                     </CardBody>
                     <Divider/>
                     <CardFooter>
-                      <Button color="warning" variant="solid" endContent={<ion-icon name="qr-code-outline"></ion-icon>}>
-                        Ver QR
+                      <Button color="success" variant="solid" onPress={() => router.push(`/dashboard/rifas/${g._id}`)}>
+                        Ver detalles de la rifa
                       </Button>
                     </CardFooter>
                   </Card>
