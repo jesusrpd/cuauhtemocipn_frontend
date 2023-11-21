@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import axios from 'axios';
 import {Card, CardHeader, CardBody, Image, CardFooter, Button} from "@nextui-org/react";
-import emailjs from "emailjs-com";
+import emailjs from "@emailjs/browser";
 
 export default function ComprobantPaymentPage({params}){
 
