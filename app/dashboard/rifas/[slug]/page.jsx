@@ -68,11 +68,11 @@ export default function DetailRifa({params}){
                 <Input type="file" className="hidden" onChange={handleSubmitExcel} ref={inputFile}/></>}
             </div>
             <div className="md:p-10 flex flex-wrap">
-                <div className="p-5 rounded-xl bg-white m-5">
+                <div className="p-5 rounded-xl bg-white m-1">
                     <h3 className="text-center font-bold">PREMIOS</h3>
-                    <div>
+                    <div className="flex items-center">
                         {giveway?.awards?.map( (award,i) => (
-                            <Card key={i} className="col-span-12 sm:col-span-4 h-[300px]">
+                            <Card key={i} className="col-span-12 sm:col-span-4 h-[100px] w-[100px] my-5 mx-2">
                             <CardHeader className="absolute z-10 top-1 flex-col !items-start">
                                 <p className="text-tiny text-white/60 uppercase font-bold">{award.name}</p>
                                 <h4 className="text-white font-medium text-large">{award.model}</h4>
@@ -87,18 +87,18 @@ export default function DetailRifa({params}){
                         ))}
                     </div>
                 </div>
-                <div className="p-5 rounded-xl bg-white m-5">
+                <div className="p-5 rounded-xl bg-white m-1">
                     <h3 className="text-center font-bold">BASES</h3>
                     <ul className="list-disc">
                         {giveway?.bases?.map(b => <li key={b}>{b}</li>)}
                     </ul>
                 </div>
-                <div className="p-5 rounded-xl bg-white m-5">
+                <div className="p-5 rounded-xl bg-white m-1">
                     <h3 className="text-center font-bold">DETALLES</h3>
                     <p>Fecha de expiración {giveway.expiration_date}</p>
                     <p>Costo por boleto ${giveway.cost_for_ticket}</p>
                 </div>
-                <div className="p-5 rounded-xl bg-white m-5">
+                <div className="p-5 rounded-xl bg-white m-1">
                     <h3 className="text-center font-bold">RESUMEN</h3>
                     <p>Boletos vendidos: 76/1000</p>
                     <p>QR de la rifa: <QRCode value={`${process.env.NEXT_PUBLIC_URL_FRONT}/rifa/${params.slug}`}/> </p>

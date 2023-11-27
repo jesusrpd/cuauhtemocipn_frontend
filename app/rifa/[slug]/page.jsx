@@ -4,6 +4,7 @@ import axios from 'axios';
 import {Card, CardHeader, CardBody, CardFooter, Divider, Image, ScrollShadow, Input, Button} from "@nextui-org/react";
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure, Chip, Select, SelectItem} from "@nextui-org/react";
 import emailjs from "@emailjs/browser";
+import { useRouter } from "next/navigation";
 
 export default function RifaPage({params}){
 
@@ -32,8 +33,9 @@ export default function RifaPage({params}){
     const [loaddingPayment, setLoaddingPayment] = useState(false);
     const paymentPhoto = useRef(null);
     const [photoPayment, setPhotoPayment] = useState(null);
-    const [error, setError] = useState(true);
+    const [error, setError] = useState(false);
     const [imgsAwards, setImgsAwards] = useState([]);
+    const router = useRouter();
     
     const getGiveway = useCallback(async () => {
         const response = await axios.get(`${process.env.NEXT_PUBLIC_URL_API}/getGiveway/${params.slug}`);
@@ -80,6 +82,7 @@ export default function RifaPage({params}){
 
     const handleDeleteTicket = ticket => {
         const update_tickets_selected = ticketsSelected.filter(t => t !== ticket);
+        setError(false)
         setTicketsSelected(update_tickets_selected)
     }
 
@@ -126,6 +129,7 @@ export default function RifaPage({params}){
             setLoaddingPayment(false);
             setInfoTicket({...infoTicket}, {last_name: '', mother_last_name: '', name: '', email: '', phone: ''});
             setTicketsSelected([]);
+            router.refresh()
         }
     }
 
@@ -134,11 +138,12 @@ export default function RifaPage({params}){
     const handleSubmitPhotoPayment = e =>{
         const file = e.target.files[0]
         setPhotoPayment(file)
+        setError(false)
     }
 
     return(
         <section className="w-full min-h-screen flex items-center justify-around flex-col md:flex-row">
-            <Card className="md:w-2/5 w-4/5 my-10 md:mb-0">
+            <Card className="md:w-2/5 w-11/12 my-10 md:mb-0">
                     <CardHeader className="flex gap-3">
                         <Image
                         alt="nextui logo"
@@ -157,17 +162,29 @@ export default function RifaPage({params}){
                     <CardBody>
                         <p className="mb-4 font-bold text-xl">Premios</p>
                         <div className="flex items-center flex-wrap">{giveway?.awards?.map( (award,i) =>(
-                            <div key={i}>
-                                <p>{award?.name}</p>
-                                <Image
-                                    alt="nextui logo"
-                                    isBlurred
-                                    height={60}
-                                    radius="sm"
-                                    src={award.img}
-                                    width={60}
-                                />
-                            </div>
+                            <Card key={i} className="col-span-12 sm:col-span-4 h-[150px] w-[150px] my-5 mx-1">
+                            <CardHeader className="absolute z-10 top-1 flex-col !items-start">
+                                <p className="text-tiny text-white/60 uppercase font-bold">{award.name}</p>
+                                <h4 className="text-white font-medium text-large">{award.model}</h4>
+                            </CardHeader>
+                            <Image
+                                removeWrapper
+                                alt="Card background"
+                                className="z-0 w-full h-full object-cover"
+                                src={award.img}
+                            />
+                            </Card>
+                            // <div key={i}>
+                            //     <p>{award?.name}</p>
+                            //     <Image
+                            //         alt="nextui logo"
+                            //         isBlurred
+                            //         height={60}
+                            //         radius="sm"
+                            //         src={award.img}
+                            //         width={60}
+                            //     />
+                            // </div>
                         ))}</div>
                     </CardBody>
                     <Divider/>

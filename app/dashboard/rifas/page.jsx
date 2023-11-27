@@ -35,6 +35,8 @@ export default function Rifas(){
     const [showQR, setShowQR] = useState(null)
     const [rule, setRule] = useState('');
     const router = useRouter()
+    const [awardsImg, setAwardsImg] = useState([])
+    const formData = new FormData()
 
     useEffect(() => {
         const getGiveways = async () => {
@@ -63,7 +65,8 @@ export default function Rifas(){
     const handleClickInputFile = () => inputAward.current.click();
 
     const handleSubmitImgAward = e => {
-        const file = e.target.files[0]
+        const file = e.target.files[0];
+        setAwardsImg(awardsImg.concat(file));
         const reader = new FileReader();
         reader.onloadend = () => {
           setDataAward({...dataAward, img: reader.result}); 
@@ -126,15 +129,27 @@ export default function Rifas(){
     const handleCreateGiveway = async () => {
         setCreateGivewayLoadding(!createGivewayLoadding);
         const formData = new FormData()
-        formData.append("giveway", giveway)
+        const award_update = giveway.awards.map( award => {
+            delete award.img
+            return award
+        })
         const token = JSON.parse(Cookie.get('token'));
         console.log(giveway);
-        const response = await axios.post(`${process.env.NEXT_PUBLIC_URL_API}/createGiveway`, giveway, {headers: {'Authorization': `Bearer ${token}`}});
-        console.log(response.data.data);
+        console.log(award_update);
+        formData.append('title', giveway.title);
+        formData.append('bases', JSON.stringify(giveway.bases));
+        formData.append('cost_fot_ticket', giveway.cost_for_ticket);
+        formData.append('expiration_date', giveway.expiration_date);
+        formData.append('total_tickets', giveway.total_tickets);
+        formData.append('awards', JSON.stringify(award_update));
+        awardsImg.map( file => {
+            formData.append('images', file);
+        });
+        const response = await axios.post(`${process.env.NEXT_PUBLIC_URL_API}/createGiveway`, formData, {headers: {'Authorization': `Bearer ${token}`}});
+        console.log(response.data);
         setShowQR(`${process.env.NEXT_PUBLIC_URL_FRONT}/rifa/${response.data.data._id}`);
         const giveways = await axios.get(`${process.env.NEXT_PUBLIC_URL_API}/getGiveways`, {headers: {'Authorization': `Bearer ${token}`}});
         if(response.data.success){
-
             setGiveways(giveways.data.data);
         }else{
             console.log('Algo salio mal');

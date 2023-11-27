@@ -45,7 +45,7 @@ export default function ComprobantPaymentPage({params}){
             <Card className="py-4 w-fit">
             <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
                 <p className="text-tiny uppercase font-bold">Comprado el: {ticket.date_shop}</p>
-                <p className="text-default-500">Boletos: {ticket?.numbers?.map(n => <small key={n}>{n}</small>)}</p>
+                <p className="text-default-500">Boletos: {ticket?.numbers?.map(n => <small key={n}>{n},</small>)}</p>
                 <h4 className="font-bold text-large">{`${ticket.name} ${ticket.last_name} ${ticket.mother_last_name}`}</h4>
             </CardHeader>
             <CardBody className="overflow-visible py-2">
