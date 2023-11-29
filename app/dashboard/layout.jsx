@@ -60,7 +60,7 @@ export default function DashboardLayout({children}){
                         <a href="#">
                             <div className="icon">
                                 <div className="imgBx">
-                                    <Image src="/img/logotipo.jpeg" alt="icon home" width={32} height={32}/>
+                                    <Image src="/img/logotipo.png" alt="icon home" width={32} height={32}/>
                                 </div>
                             </div>
                             <div className="text">Dashboard</div>

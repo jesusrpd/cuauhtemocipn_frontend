@@ -174,7 +174,7 @@ export default function Rifas(){
                         alt="nextui logo"
                         height={40}
                         radius="sm"
-                        src="/img/bg/satelite.jpg"
+                        src="/img/logotipo.png"
                         width={40}
                       />
                       <div className="flex flex-col">
@@ -183,9 +183,6 @@ export default function Rifas(){
                       </div>
                     </CardHeader>
                     <Divider/>
-                    <CardBody>
-                      <p>Make beautiful websites regardless of your design experience.</p>
-                    </CardBody>
                     <Divider/>
                     <CardFooter>
                       <Button color="success" variant="solid" onPress={() => router.push(`/dashboard/rifas/${g._id}`)}>

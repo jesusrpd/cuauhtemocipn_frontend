@@ -150,7 +150,7 @@ export default function RifaPage({params}){
                         isBlurred
                         height={40}
                         radius="sm"
-                        src="/img/logotipo.jpeg"
+                        src="/img/logotipo.png"
                         width={40}
                         />
                         <div className="flex flex-col">
@@ -162,29 +162,22 @@ export default function RifaPage({params}){
                     <CardBody>
                         <p className="mb-4 font-bold text-xl">Premios</p>
                         <div className="flex items-center flex-wrap">{giveway?.awards?.map( (award,i) =>(
-                            <Card key={i} className="col-span-12 sm:col-span-4 h-[150px] w-[150px] my-5 mx-1">
-                            <CardHeader className="absolute z-10 top-1 flex-col !items-start">
-                                <p className="text-tiny text-white/60 uppercase font-bold">{award.name}</p>
-                                <h4 className="text-white font-medium text-large">{award.model}</h4>
-                            </CardHeader>
-                            <Image
-                                removeWrapper
-                                alt="Card background"
-                                className="z-0 w-full h-full object-cover"
-                                src={award.img}
-                            />
+                            <Card shadow="sm" key={i} className="h-[150px] w-[150px]">
+                                <CardBody className="overflow-visible p-0">
+                                    <Image
+                                    shadow="sm"
+                                    radius="lg"
+                                    width="100%"
+                                    alt={award.name}
+                                    className="w-full object-cover h-[100px]"
+                                    src={award.img}
+                                    />
+                                </CardBody>
+                                <CardFooter className="text-small justify-between">
+                                    <b className="text-gray-900">{award.name}</b>
+                                    <p className="text-default-500">{award.model}</p>
+                                </CardFooter>
                             </Card>
-                            // <div key={i}>
-                            //     <p>{award?.name}</p>
-                            //     <Image
-                            //         alt="nextui logo"
-                            //         isBlurred
-                            //         height={60}
-                            //         radius="sm"
-                            //         src={award.img}
-                            //         width={60}
-                            //     />
-                            // </div>
                         ))}</div>
                     </CardBody>
                     <Divider/>

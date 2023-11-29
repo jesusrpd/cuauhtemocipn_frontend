@@ -33,7 +33,7 @@ export default function Login(){
         <main className="w-full min-h-screen flex items-center bg-hero-login bg-cover">
             <div className="absolute top-0 left-0 bg-black w-full h-screen opacity-70"></div>
             <div className="w-fit px-10 py-5 m-auto flex flex-col justify-center items-center z-20">
-                <Image src="/img/logotipo.jpeg" alt="logotipo Cuauhtémoc IPN" width={100} height={100} className="mb-5 rounded-full"/>
+                <Image src="/img/logotipo.png" alt="logotipo Cuauhtémoc IPN" width={100} height={100} className="mb-5 rounded-full"/>
                 <h2 className="text-white font-bold text-xl">Login Cuauhtémoc IPN</h2>
                 <Input type="email" variant="underlined" label="Email" className="mb-5 text-white" classNames="text-white" value={email} onValueChange={setEmail}/>
                 <Input

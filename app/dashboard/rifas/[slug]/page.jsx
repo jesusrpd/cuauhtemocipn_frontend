@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef } from "react";
 import axios from 'axios';
 import QRCode from 'qrcode.react';
-import {Card, CardHeader, Image, Button, Input, Progress} from "@nextui-org/react";
+import {Card, CardHeader, Image, Button, Input, Progress, CardBody, CardFooter, Divider} from "@nextui-org/react";
 
 export default function DetailRifa({params}){
 
@@ -53,7 +53,7 @@ export default function DetailRifa({params}){
 
     return(
         <div className="w-full min-h-screen">
-            <h2 className="text-white font-bold text-xl text-center my-10">{giveway.title}</h2>
+            <h2 className="text-white font-bold text-xl text-center my-5">{giveway.title}</h2>
             {finishSubmit && <div className="py-2 px-5 rounded-xl bg-green-300 text-green-700 absolute bottom-10 right-5">Excel con tickets subidos exitosamente!! <ion-icon name="checkmark-done-circle"></ion-icon>
                 <Progress
                     aria-label="Downloading..."
@@ -63,7 +63,7 @@ export default function DetailRifa({params}){
                     className="max-w-md bg-transparent"
                 />
             </div>}
-            <div className="absolute top-20 right-5">
+            <div className="absolute top-10 right-5">
                 {loaddingSubmit?<Button color="success" isLoading>Cargando...</Button>:<><Button color="warning" endContent={<ion-icon name="cloud-upload"></ion-icon>} onPress={clickInputFile}>Subir boletos</Button>
                 <Input type="file" className="hidden" onChange={handleSubmitExcel} ref={inputFile}/></>}
             </div>
@@ -72,17 +72,21 @@ export default function DetailRifa({params}){
                     <h3 className="text-center font-bold">PREMIOS</h3>
                     <div className="flex items-center">
                         {giveway?.awards?.map( (award,i) => (
-                            <Card key={i} className="col-span-12 sm:col-span-4 h-[100px] w-[100px] my-5 mx-2">
-                            <CardHeader className="absolute z-10 top-1 flex-col !items-start">
-                                <p className="text-tiny text-white/60 uppercase font-bold">{award.name}</p>
-                                <h4 className="text-white font-medium text-large">{award.model}</h4>
-                            </CardHeader>
-                            <Image
-                                removeWrapper
-                                alt="Card background"
-                                className="z-0 w-full h-full object-cover"
-                                src={award.img}
-                            />
+                            <Card shadow="sm" key={i} className="h-[150px] w-[150px] mx-1 mt-1">
+                                <CardBody className="overflow-visible p-0">
+                                    <Image
+                                    shadow="sm"
+                                    radius="lg"
+                                    width="100%"
+                                    alt={award.name}
+                                    className="w-full object-cover h-[100px]"
+                                    src={award.img}
+                                    />
+                                </CardBody>
+                                <CardFooter className="text-small justify-between">
+                                    <b className="text-gray-900">{award.name}</b>
+                                    <p className="text-default-500">{award.model}</p>
+                                </CardFooter>
                             </Card>
                         ))}
                     </div>
@@ -100,8 +104,11 @@ export default function DetailRifa({params}){
                 </div>
                 <div className="p-5 rounded-xl bg-white m-1">
                     <h3 className="text-center font-bold">RESUMEN</h3>
-                    <p>Boletos vendidos: 76/1000</p>
+                    <p>Boletos fisicos: 76/1000</p>
+                    <p>Boletos digitales: 76/1000</p>
                     <p>QR de la rifa: <QRCode value={`${process.env.NEXT_PUBLIC_URL_FRONT}/rifa/${params.slug}`}/> </p>
+                    <Divider/>
+                    <p>Recaudado: $500</p>
                 </div>
             </div>
         </div>
