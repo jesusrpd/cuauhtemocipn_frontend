@@ -9,16 +9,19 @@ export default function ComprobantPaymentPage({params}){
 
     const [ticket, setTicket] = useState({});
     const [confirm, setConfirm] = useState(false);
+    const [loaddingPage, setLoaddingPage] = useState(true);
 
     useEffect(() => {
         const getDataPayment = async () => {
             const response = await axios.get(`${process.env.NEXT_PUBLIC_URL_API}/confirm-payment/${params.slug}`)
             console.log(response.data.data);
             setTicket(response.data.data);
+            setLoaddingPage(false)
         };
         getDataPayment();
     },[params.slug]);
 
+    
     const handleConfirmTicket = async () => {
         const response = await  axios.post(`${process.env.NEXT_PUBLIC_URL_API}/generate-token-tickets`, {email: ticket.email, _id: ticket._id, phone: ticket.phone});
         if(response.data.success){
@@ -39,7 +42,8 @@ export default function ComprobantPaymentPage({params}){
             setConfirm(true)
         }
     }
-
+    
+    if(loaddingPage) return <div className="h-screen w-full flex flex-col items-center justify-center"><span class="loaderPageGiveway"></span><p className="font-bold text-center text-white">Cargando...</p></div>
     return(
         <div className="w-full h-screen flex items-center justify-center">
             <Card className="py-4 w-fit">

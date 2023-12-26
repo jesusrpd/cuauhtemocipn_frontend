@@ -36,6 +36,7 @@ export default function RifaPage({params}){
     const [error, setError] = useState(false);
     const [imgsAwards, setImgsAwards] = useState([]);
     const router = useRouter();
+    const [loaddingPage, setLoaddingPage] = useState(false);
     
     const getGiveway = useCallback(async () => {
         const response = await axios.get(`${process.env.NEXT_PUBLIC_URL_API}/getGiveway/${params.slug}`);
@@ -47,6 +48,7 @@ export default function RifaPage({params}){
                 array_tickets.push(ticket);
             }
             setTickets(array_tickets);
+            setLoaddingPage(false);
             // const awards_fetch = await axios.post(`${process.env.NEXT_PUBLIC_URL_API}/getAwards`, {
             //     awards: response.data.data.awards
             // });
@@ -56,8 +58,9 @@ export default function RifaPage({params}){
     }, [params]);
 
     useEffect(() => {
+        setLoaddingPage(true)
         getGiveway();
-        emailjs.init(process.env.NEXT_PUBLIC_INIT_EMAILJS)
+        emailjs.init(process.env.NEXT_PUBLIC_INIT_EMAILJS);
     }, [getGiveway]);
 
     const handleSelectTicket = ticket => {
@@ -140,7 +143,7 @@ export default function RifaPage({params}){
         setPhotoPayment(file)
         setError(false)
     }
-
+    if(loaddingPage) return <div className="h-screen w-full flex flex-col items-center justify-center"><span class="loaderPageGiveway"></span><p className="font-bold text-center text-white">Cargando...</p></div>
     return(
         <section className="w-full min-h-screen flex items-center justify-around flex-col md:flex-row">
             <Card className="md:w-2/5 w-11/12 my-10 md:mb-0">

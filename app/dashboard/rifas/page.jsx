@@ -138,7 +138,7 @@ export default function Rifas(){
         console.log(award_update);
         formData.append('title', giveway.title);
         formData.append('bases', JSON.stringify(giveway.bases));
-        formData.append('cost_fot_ticket', giveway.cost_for_ticket);
+        formData.append('cost_for_ticket', giveway.cost_for_ticket);
         formData.append('expiration_date', giveway.expiration_date);
         formData.append('total_tickets', giveway.total_tickets);
         formData.append('awards', JSON.stringify(award_update));
