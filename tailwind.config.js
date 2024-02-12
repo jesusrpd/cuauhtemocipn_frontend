@@ -11,7 +11,13 @@ module.exports = {
     extend: {
       backgroundImage: {
         'hero-login': "url('/img/bg/mountain.jpg')",
+        'home-loading':"url('/img/bg/bgLoading.jpg')",
+        'frase': "url('/img/bg/frase.png')"
       },
+      colors: {
+        'ipn-color': "#A5004F",
+        'black-cuau': "#111111",
+      }
     },
   },
   darkMode: "class",
