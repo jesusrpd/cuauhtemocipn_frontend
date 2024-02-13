@@ -13,6 +13,24 @@ export default function Home() {
     // If a user hasn't opted in for recuded motion, then we add the animation
     if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       addAnimation();
+
+      let nextDom = document.getElementById('next');
+      let prevDom = document.getElementById('prev');
+
+      let carouselDom = document.querySelector('.carousel');
+      let SliderDom = carouselDom.querySelector('.carousel .list');
+      let thumbnailBorderDom = document.querySelector('.carousel .thumbnail');
+      let thumbnailItemsDom = thumbnailBorderDom.querySelectorAll('.item');
+      let timeDom = document.querySelector('.carousel .time');
+
+      thumbnailBorderDom.appendChild(thumbnailItemsDom[0]);
+      let timeRunning = 3000;
+      let timeAutoNext = 7000;
+      let runTimeOut;
+      let runNextAuto = setTimeout(() => {
+          next.click();
+      }, timeAutoNext)
+      
     }
 
     function addAnimation() {
@@ -33,14 +51,37 @@ export default function Home() {
           scrollerInner.appendChild(duplicatedItem);
         });
       });
+
     }
-
-
+    
+    
   },[])
+  const showSlider = (type) => {
+    let  SliderItemsDom = document.querySelectorAll('.carousel .list .item');
+    let thumbnailItemsDom = document.querySelectorAll('.carousel .thumbnail .item');
+    
+    if(type === 'next'){
+        SliderDom.appendChild(SliderItemsDom[0]);
+        thumbnailBorderDom.appendChild(thumbnailItemsDom[0]);
+        carouselDom.classList.add('next');
+    }else{
+        SliderDom.prepend(SliderItemsDom[SliderItemsDom.length - 1]);
+        thumbnailBorderDom.prepend(thumbnailItemsDom[thumbnailItemsDom.length - 1]);
+        carouselDom.classList.add('prev');
+    }
+    clearTimeout(runTimeOut);
+    runTimeOut = setTimeout(() => {
+        carouselDom.classList.remove('next');
+        carouselDom.classList.remove('prev');
+    }, timeRunning);
 
-  const funcsfd = () =>{
-    // logica
-  }
+    clearTimeout(runNextAuto);
+    runNextAuto = setTimeout(() => {
+        next.click();
+    }, timeAutoNext)
+}
+  
+ 
 
   return (
     <main className="w-full">
@@ -76,7 +117,7 @@ export default function Home() {
           </div>
           <div className="w-1/2 flex flex-col items-center">
             <h2 className="text-center text-white font-bold mb-10 text-4xl">CUAUHTÉMOC IPN<br/>AEROESPACE</h2>
-            <p onClick={funcsfd} className="text-white leading-8 text-justify w-3/4">Historia de cuauhtémoc, de cuando fue fundado quienes lo conforman, lo que hacemos dentro del equipo, el laboratorio las instalaciones y las maquinas con las que contamos dentro del equipo, las competencias, algunos detalles de por que destacamos como equipo y una foto de lado izquierdo que represente al equipo.</p>
+            <p className="text-white leading-8 text-justify w-3/4">Historia de cuauhtémoc, de cuando fue fundado quienes lo conforman, lo que hacemos dentro del equipo, el laboratorio las instalaciones y las maquinas con las que contamos dentro del equipo, las competencias, algunos detalles de por que destacamos como equipo y una foto de lado izquierdo que represente al equipo.</p>
           </div>
         </section>
       </section>
@@ -91,6 +132,113 @@ export default function Home() {
           <Image className="exclusion-mode mx-4" src="/img/organizaciones/fundacionpolitecnico.png" alt="fundación politecnico" width={150} height={50} />
         </div>
       </div>
+      </section>
+      <section>
+      
+    <div class="carousel">
+        
+        <div class="list">
+            <div class="item">
+                <Image src="/img/carrusel/image/img1.jpg" alt="carrusel-imagen1" width={60} height={100} layout="responsive"/>
+                <div class="content">
+                    
+                    <div class="topic">EPS (Electronic Power System)</div>
+                    <div class="des">
+                        
+                        Subsección en cargado de los circuitos y la manufactura de las placas PCB. Agregar más contenido sobre esta subsección y agregar más contenido en el render.
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="item">
+                <Image src="/img/carrusel/image/img2.jpg" alt="carrusel-imagne2" width={60} height={100} layout="responsive"/>
+                <div class="content">
+                    
+                    <div class="topic">Mecanica</div>
+                    <div class="des">
+                        Mecanica es el diseño de estructuras, manufactura de las piezas que component el satelite, diseño y analizis para asegurarse de que el satelite soporte todos los esfuerzos a los que será sometido durante la competencia.
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="item">
+                <Image src="/img/carrusel/image/img3.jpg" alt="carrusel-imagne3" width={60} height={100} layout="responsive"/>
+                <div class="content">
+                    
+                    <div class="topic">Aarodinamica</div>
+                    <div class="des">
+                        Aerodinámica es la subsección encargada de hacer los cálculos necesarios para la fabricación de paracaídas, asegurando la recuperación de los prototipos.
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="item">
+                <Image src="/img/carrusel/image/img4.jpg" alt="carrusel-imagen4" width={60} height={100} layout="responsive"/>
+                <div class="content">
+                    
+                    <div class="topic">CCH</div>
+                    <div class="des">
+                        CDH es el encargado de la programción de los prototipos, además de crear una interfaz que sea capaz de mostrar los datos en tiempo real que transmite el satélite al momento del vuelo.
+                    </div>
+                    
+                </div>
+            </div>
+        </div>        
+        <div class="thumbnail">
+            <div class="item">
+                <Image src="/img/carrusel/image/img1.jpg"  alt="imgcar1" width={60} height={100} />
+                <div class="content">
+                    <div class="title">
+                        EPS
+                    </div>
+                    <div class="description">
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <Image src="/img/carrusel/image/img2.jpg"  alt="imgcar2" width={60} height={100}/>
+                <div class="content">
+                    <div class="title">
+                        Mecanica
+                    </div>
+                    <div class="description">
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <Image src="/img/carrusel/image/img3.jpg" alt="imgcar3" width={60} height={100}/>
+                <div class="content">
+                    <div class="title">
+                        Aerodinámica
+                    </div>
+                    <div class="description">
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <Image src="/img/carrusel/image/img4.jpg" alt="imgcar4" width={60} height={100}/>
+                <div class="content">
+                    <div class="title">
+                        CCH
+                    </div>
+                    <div class="description">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="arrows">
+            <button id="prev" onClick={()=> showSlider("prev")}>prev</button>
+            <button id="next" onClick={()=> showSlider("next")}>next</button>
+        </div>
+        
+        <div class="time"></div>
+    </div>
+
       </section>
       <section className="w-full h-80 bg-frase bg-contain flex justify-center items-center border-y-2 border-y-white">
         <h3 className="text-white text-4xl font-bold text-center">Otra frase motivacional.</h3>
