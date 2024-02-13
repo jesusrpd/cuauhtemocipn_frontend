@@ -1,13 +1,23 @@
 "use client"
 
 import Image from "next/image";
-import {Button} from "@nextui-org/react";
-import { useEffect } from "react";
-import imgCompetition2023 from '../public/img/competencias/Competition2023.png'
+import { useEffect, useState } from "react";
+import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, NavbarMenuToggle, NavbarMenu, NavbarMenuItem} from "@nextui-org/react";
+import React from "react";
 
 export default function Home() {
-
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   useEffect(() =>{
+
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('navbar')
+      if(window.scrollY > 0){
+          nav.classList.add('sticky')
+      }else{
+          nav.classList.remove('sticky')
+      }
+  })
+
     const scrollers = document.querySelectorAll(".scroller");
 
     // If a user hasn't opted in for recuded motion, then we add the animation
@@ -38,72 +48,136 @@ export default function Home() {
 
   },[])
 
-  const funcsfd = () =>{
-    // logica
-  }
+  const menuItems = [
+    "Profile",
+    "Dashboard",
+    "Activity",
+    "Analytics",
+    "System",
+    "Deployments",
+    "My Settings",
+    "Team Settings",
+    "Help & Feedback",
+    "Log Out",
+  ];
 
   return (
     <main className="w-full">
+          {/* <Navbar onMenuOpenChange={setIsMenuOpen}>
+            <NavbarContent>
+              <NavbarMenuToggle
+                aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+                className="sm:hidden"
+              />
+              <NavbarBrand>
+                <p className="font-bold text-inherit">ACME</p>
+              </NavbarBrand>
+            </NavbarContent>
+
+            <NavbarContent className="hidden sm:flex gap-4" justify="center">
+              <NavbarItem>
+                <Link color="foreground" href="#">
+                  Features
+                </Link>
+              </NavbarItem>
+              <NavbarItem isActive>
+                <Link href="#" aria-current="page">
+                  Customers
+                </Link>
+              </NavbarItem>
+              <NavbarItem>
+                <Link color="foreground" href="#">
+                  Integrations
+                </Link>
+              </NavbarItem>
+            </NavbarContent>
+            <NavbarContent justify="end">
+              <NavbarItem className="hidden lg:flex">
+                <Link href="#">Login</Link>
+              </NavbarItem>
+              <NavbarItem>
+                <Button as={Link} color="primary" href="#" variant="flat">
+                  Sign Up
+                </Button>
+              </NavbarItem>
+            </NavbarContent>
+            <NavbarMenu>
+              {menuItems.map((item, index) => (
+                <NavbarMenuItem key={`${item}-${index}`}>
+                  <Link
+                    color={
+                      index === 2 ? "primary" : index === menuItems.length - 1 ? "danger" : "foreground"
+                    }
+                    className="w-full"
+                    href="#"
+                    size="lg"
+                  >
+                    {item}
+                  </Link>
+                </NavbarMenuItem>
+              ))}
+            </NavbarMenu>
+          </Navbar> */}
+          <nav id="navbar" className="flex items-center w-full justify-between">
+            <Image alt="logotipo cuauhtémoc" src="/img/icons/logotipowhite.png" width={60} height={60}/>
+            <ul className="flex items-center text-white font-bold">
+              <li className="mx-4"><a href="#inicio" className="btn-underline">Inicio</a></li>
+              <li className="mx-4"><a href="#cuauhtemoc" className="btn-underline">Cuauhtémoc</a></li>
+              <li className="mx-4"><a href="#subsecciones" className="btn-underline">Subsecciones</a></li>
+              <li className="mx-4"><a href="#competencias" className="btn-underline">Competencias</a></li>
+              <li className="mx-4"><a href="#reclutamiento" className="btn-underline">Reclutamiento</a></li>
+            </ul>
+          </nav>
       <div className="fixed left-2 bottom-4">
         <Image alt="icon instagram" src="/img/icons/instagram.svg" width={30} height={30}/>
         <Image alt="icon facebook" src="/img/icons/facebook.svg" width={30} height={30} className="mt-4"/>
       </div>
       <section className="min-h-screen w-full bg-home-loading bg-cover bg-no-repeat">
-        <section className="w-full h-screen">
-          <nav className="flex items-center w-full justify-between px-5 pt-5">
-            <Image alt="logotipo cuauhtémoc" src="/img/icons/logotipowhite.png" width={60} height={60}/>
-            <ul className="flex items-center text-white font-bold">
-              <li className="mx-4">Inicio</li>
-              <li className="mx-4">Cuauhtémoc</li>
-              <li className="mx-4">Subsecciones</li>
-              <li className="mx-4">Competencias</li>
-              <li className="mx-4">Reclutamiento</li>
-            </ul>
-          </nav>
-          <h1 className="font-bold text-white text-7xl text-center mt-20 italic">CUAUHTÉMOC<br/><span className="text-ipn-color">IPN</span></h1>
+        <section id="inicio" className="w-full h-screen flex flex-col justify-center">
+          <h1 className="font-bold text-white text-5xl md:text-7xl text-center mb-12 italic">CUAUHTÉMOC<br/><span className="text-ipn-color">IPN</span></h1>
           <div className="text-white text-base pl-5">
-            <h2 className="text-4xl italic font-bold">Vuela con nosotros...</h2>
-            <p className="my-2">Eslogan o frase para el homepage<br/>que tenga contenido de almenos 3 lineas.</p>
-            <Button className="text-white font-bold mt-2 hover:text-black hover:bg-white hover:border-0" variant="bordered">
+            <h2 className=" text-2xl md:text-4xl italic font-bold">Vuela con nosotros...</h2>
+            <p className="my-2 mb-10 md:mb-5">Eslogan o frase para el homepage<br/>que tenga contenido de almenos 3 lineas.</p>
+            <a className="text-white font-bold px-2 py-2 border-1 rounded-md hover:text-black hover:bg-white transition-all" variant="bordered" href="#cuauhtemoc">
               Conocenos...
-            </Button>  
+            </a>  
           </div>
         </section>
-        <section className="w-full h-screen flex items-center">
-          <div className="w-1/2 flex flex-col items-center">
+        <section id="cuauhtemoc" className="w-full h-screen flex items-center flex-col md:flex-row">
+          <div className="w-11/12 md:w-1/2 flex flex-col items-center">
             <Image alt="img de cuauhtémoc" src="/img/ilustrate/cuauhtemoc.png" width={600} height={500}/>
             <p className="text-base text-white">“Leyenda motivacional del equipo.”</p>
           </div>
-          <div className="w-1/2 flex flex-col items-center">
+          <div className="w-11/12 mt-10 md:mt-0 md:w-1/2 flex flex-col items-center">
             <h2 className="text-center text-white font-bold mb-10 text-4xl">CUAUHTÉMOC IPN<br/>AEROESPACE</h2>
-            <p onClick={funcsfd} className="text-white leading-8 text-justify w-3/4">Historia de cuauhtémoc, de cuando fue fundado quienes lo conforman, lo que hacemos dentro del equipo, el laboratorio las instalaciones y las maquinas con las que contamos dentro del equipo, las competencias, algunos detalles de por que destacamos como equipo y una foto de lado izquierdo que represente al equipo.</p>
+            <p className="text-white leading-8 text-justify w-11/12 md:w-3/4">Historia de cuauhtémoc, de cuando fue fundado quienes lo conforman, lo que hacemos dentro del equipo, el laboratorio las instalaciones y las maquinas con las que contamos dentro del equipo, las competencias, algunos detalles de por que destacamos como equipo y una foto de lado izquierdo que represente al equipo.</p>
           </div>
         </section>
       </section>
-      <section className="h-48 bg-white w-full flex items-center">
+      <section className="h-48 bg-black w-full flex items-center">
       <div class="scroller" data-direction="right" data-speed="slow">
         <div class="scroller__inner">
-          <Image className="exclusion-mode mx-4" src="/img/organizaciones/grupossc.png" alt="grupo ssc" width={60} height={100} />
-          <Image className="exclusion-mode mx-4" src="/img/organizaciones/CDA.png" alt="CDA" width={50} height={50} />
-          <Image className="exclusion-mode mx-4" src="/img/organizaciones/ipn.png" alt="ipn" width={50} height={50} />
-          <Image className="exclusion-mode mx-4" src="/img/organizaciones/cuauhtemoc.png" alt="cuauhtémoc" width={150} height={50} />
-          <Image className="exclusion-mode mx-4" src="/img/organizaciones/pcbmexico.png" alt="pcb méxico" width={300} height={50} />
-          <Image className="exclusion-mode mx-4" src="/img/organizaciones/fundacionpolitecnico.png" alt="fundación politecnico" width={150} height={50} />
+          <Image className="exclusion-mode mx-5 md:mx-16" src="/img/organizaciones/grupossc.png" alt="grupo ssc" width={60} height={100} />
+          <Image className="exclusion-mode mx-5 md:mx-16" src="/img/organizaciones/CDA.png" alt="CDA" width={50} height={50} />
+          <Image className="exclusion-mode mx-5 md:mx-16" src="/img/organizaciones/ipn.png" alt="ipn" width={50} height={50} />
+          <Image className="exclusion-mode mx-5 md:mx-10" src="/img/organizaciones/cuauhtemoc.png" alt="cuauhtémoc" width={150} height={50} />
+          <Image className="exclusion-mode mx-5 md:mx-10" src="/img/organizaciones/pcbmexico.png" alt="pcb méxico" width={300} height={50} />
+          <Image className="exclusion-mode mx-5 md:mx-10" src="/img/organizaciones/fundacionpolitecnico.png" alt="fundación politecnico" width={150} height={50} />
         </div>
       </div>
       </section>
-      <section className="w-full h-80 bg-frase bg-contain flex justify-center items-center border-y-2 border-y-white">
-        <h3 className="text-white text-4xl font-bold text-center">Otra frase motivacional.</h3>
+      <section className="w-full h-80 bg-frase bg-cover md:bg-contain flex justify-center items-center border-y-2 border-y-white">
+        <h3 className="text-white text-3xl md:text-4xl font-bold text-center">Otra frase motivacional.</h3>
       </section>
-      <section className="w-full h-screen bg-black-cuau text-white flex flex-col justify-around items-center">
+      <section id="competencias" className="w-full min-h-screen bg-black-cuau text-white flex flex-col justify-evenly items-center pb-5 md:pb-0">
         <div className="w-full flex flex-col items-center">
-          <h2 className="text-2xl font-bold">Competencias</h2>
-          <p className="text-base w-2/4 text-justify">En Cuauhtémoc participamos en varias competencias nacionales e internacionales, dentro de las nacionales en las que participamos esta CanSat Cucei, Comeback, Telemetri e Eunice. Quedando en alguna de estas en primer lugar a nivel nacional.</p><br/>
-          <p className="text-base w-2/4 text-justify">Dentro de la internacional esta Cansat Competition, el cual se realiza en E.U. Virginia, en esta competencia se ha logrado el 5to y 3er lugar a nivel mundial, destacando en primer lugar a nivel Latinoamericano. Abajo podrás ver algunas de nuestras mencionadas anteriormente.</p>
+          <h2 className="text-2xl font-bold my-5 md:mb-5">Competencias</h2>
+          <p className="text-base w-11/12 md:w-2/4 text-justify leading-8">En Cuauhtémoc participamos en varias competencias nacionales e internacionales, dentro de las nacionales en las que participamos esta CanSat Cucei, Comeback, Telemetri e Eunice. Quedando en alguna de estas en primer lugar a nivel nacional.<br/><br/>
+          Dentro de la internacional esta Cansat Competition, el cual se realiza en E.U. Virginia, en esta competencia se ha logrado el 5to y 3er lugar a nivel mundial, destacando en primer lugar a nivel Latinoamericano. Abajo podrás ver algunas de nuestras mencionadas anteriormente.</p>
         </div>
         <div className="w-full">
-          <div className="flex items-center justify-evenly">
-            <div className="w-fit">
+          <div className="flex flex-col items-center md:flex-row md:items-center md:justify-evenly">
+            <div className="w-fit my-2 md:my-0">
               <div class="container competition-color">
                 <div class="box box-competition">
                 <Image alt="competition 2023" src="/img/competencias/Competition2023.png" width={195} height={136}/>
@@ -112,7 +186,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="w-fit">
+            <div className="w-fit my-2 md:my-0">
               <div class="container cucei-color">
                 <div class="box box-cucei">
                 <Image alt="competition 2023" src="/img/competencias/CanSatCucei.png" width={195} height={136}/>
@@ -121,7 +195,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="w-fit">
+            <div className="w-fit my-2 md:my-0">
               <div class="container comeback-color">
                 <div class="box box-comeback">
                 <Image alt="competition 2023" src="/img/competencias/Comeback.png" width={195} height={136}/>
@@ -133,19 +207,23 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="w-full h-screen bg-white flex items-center justify-around">
-        <div className="w-1/2">
-          <h2 className="text-4xl font-bold italic mb-10 text-center leading-10">RECLUTAMIENTO CUAUHTÉMOC<br/><span className="text-ipn-color">IPN</span> AEROESPACE</h2>
-          <p className="text-justify leading-10 px-10">Cada año dentro del equipo se hace un reclutamiento para las nuevas generaciones de Cuauhtémoc. El reclutamiento se divide en 2 partes, reclutamiento para aquellas personas que estudian una ingeniería dentro del IPN y puedan competir dentro del equipo <span className="text-ipn-color font-bold">(new member).</span></p><br/>
-          <p className="text-justify leading-10 px-10">El segundo bloque es para aquella personas que aún no entran a universidad pero se encuentran estudiando el bachilleres dentro del IPN y pero les gustraía ir ganando experiencia, pueden unirse al equipo de redes sociales del equipo <span className="text-ipn-color font-bold">(new social).</span></p>
+      <section id="reclutamiento" className="w-full min-h-screen bg-white flex flex-col items-center md:flex-row md:items-center md:justify-around">
+        <div className="w-11/12 md:w-1/2">
+          <h2 className="text-2xl md:text-4xl font-bold italic my-10 md:mb-10 text-center leading-10">RECLUTAMIENTO CUAUHTÉMOC<br/><span className="text-ipn-color">IPN</span> AEROESPACE</h2>
+          <p className="text-justify leading-10 px-0 md:px-10">Cada año dentro del equipo se hace un reclutamiento para las nuevas generaciones de Cuauhtémoc. El reclutamiento se divide en 2 partes, reclutamiento para aquellas personas que estudian una ingeniería dentro del IPN y puedan competir dentro del equipo <span className="text-ipn-color font-bold">(new member).</span></p><br/>
+          <p className="text-justify leading-10 px-0 md:px-10">El segundo bloque es para aquella personas que aún no entran a universidad pero se encuentran estudiando el bachilleres dentro del IPN y pero les gustraía ir ganando experiencia, pueden unirse al equipo de redes sociales del equipo <span className="text-ipn-color font-bold">(new social).</span></p>
         </div>
-        <Image alt="rocket" src="/img/ilustrate/rocket.png" width={350} height={600}/>
+        <div className="w-1/2 md:w-fit">
+          <Image alt="rocket" src="/img/ilustrate/rocket.png" width={350} height={600}/>
+        </div>
       </section>
-      <footer className="w-full h-80 bg-black-cuau flex items-end">
-        <Image alt="cuauhtémoc ipn" src="/img/ilustrate/cuauhtemocipn.png" width={517} height={300}/>
-        <div className="text-white flex flex-col pb-20 pl-10">
+      <footer className="w-full h-fit py-10 md:py-0 md:h-80 bg-black-cuau flex flex-col items-center md:flex-row md:items-end">
+        <div className="w-5/6 md:w-fit mb-10 md:mb-0">
+          <Image alt="cuauhtémoc ipn" src="/img/ilustrate/cuauhtemocipn.png" width={517} height={300}/>
+        </div>
+        <div className="text-white flex flex-col w-11/12 text-center md:w-fit pb-20 md:pl-10">
           <p className="mb-10">Para contactarnos puedes hacerlo por medio del correo o por nuestras redes sociales.</p>
-          <div className="flex justify-around items-center">
+          <div className="flex md: md:justify-around md:items-center">
             <div className="text-center">
               <p className="mb-5">cuauhtemocipn@gmail.com</p>
               <p>Todos los derechos reservados por el autor.</p>
