@@ -351,8 +351,8 @@ function showSlider(type){
       <section id="reclutamiento" className="w-full min-h-screen bg-white flex flex-col items-center md:flex-row md:items-center md:justify-around">
         <div className="w-11/12 md:w-1/2">
           <h2 className="text-2xl md:text-4xl font-bold italic my-10 md:mb-10 text-center leading-10 text-black">RECLUTAMIENTO CUAUHTÉMOC<br/><span className="text-ipn-color">IPN</span> AEROESPACE</h2>
-          <p className="text-justify leading-10 px-0 md:px-10 text-black">Cada año dentro del equipo se hace un reclutamiento para las nuevas generaciones de Cuauhtémoc. El reclutamiento se divide en 2 partes, reclutamiento para aquellas personas que estudian una ingeniería dentro del IPN y puedan competir dentro del equipo <span className="text-ipn-color font-bold">(new member).</span></p><br/>
-          <p className="text-justify leading-10 px-0 md:px-10 text-black">El segundo bloque es para aquella personas que aún no entran a universidad pero se encuentran estudiando el bachilleres dentro del IPN y pero les gustraía ir ganando experiencia, pueden unirse al equipo de redes sociales del equipo <span className="text-ipn-color font-bold">(new social).</span></p>
+          <p className="text-justify leading-10 px-0 md:px-10 text-black">Cada año dentro del equipo se hace un reclutamiento para las nuevas generaciones de Cuauhtémoc. El reclutamiento se divide en 2 partes.<br/>Reclutamiento para aquellas personas que estudian una ingeniería dentro del IPN y puedan competir dentro del equipo <span className="text-ipn-color font-bold">(new member).</span></p><br/>
+          <p className="text-justify leading-10 px-0 md:px-10 text-black">El segundo bloque es para aquella personas que aún no entran a universidad pero se encuentran estudiando dentro del IPN y les gustraía ir ganando experiencia, pueden unirse como miembros de redes sociales del equipo <span className="text-ipn-color font-bold">(new social).</span></p>
         </div>
         <div className="w-1/2 md:w-fit">
           <Image alt="rocket" src="/img/ilustrate/rocket.png" width={350} height={600}/>
