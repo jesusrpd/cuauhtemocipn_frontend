@@ -28,7 +28,6 @@ html{
 
 nav{
   transition: all .3s ease-in-out;
-  padding: 20px;
   position: fixed;
   top: 0;
   left: 0;
@@ -623,14 +622,6 @@ nav.sticky{
   background-color: rgba(156, 156, 156, 0.466);
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-body{
-    margin: 0;
-    background-color: #000;
-    color: #eee;
-    font-family: Poppins;
-    font-size: 12px;
-}
 a{
     text-decoration: none;
 }
@@ -728,7 +719,7 @@ header a{
     bottom: 50px;
     left: 50%;
     width: max-content;
-    z-index: 100;
+    z-index: 1;
     display: flex;
     gap: 20px;
 }
@@ -752,7 +743,7 @@ header a{
     right: 10px;
 }
 .thumbnail .item .content .title{
-    font-weight: 500;
+    font-weight: bold;
     font-size: 18PX;
 }
 .thumbnail .item .content .description{
@@ -774,9 +765,9 @@ header a{
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: #eee4;
+    background-color: rgb(255, 255, 255);
     border: none;
-    color: #fff;
+    color: #000000;
     font-family: monospace;
     font-weight: bold;
     transition: .5s;
@@ -873,7 +864,6 @@ header a{
     z-index: 1000;
     width: 0%;
     height: 3px;
-    background-color: #f1683a;
     left: 0;
     top: 0;
 }

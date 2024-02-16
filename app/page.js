@@ -1,12 +1,13 @@
 "use client"
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, NavbarMenuToggle, NavbarMenu, NavbarMenuItem} from "@nextui-org/react";
 import React from "react";
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const clickRef = useRef();
   useEffect(() =>{
 
     window.addEventListener('scroll', () => {
@@ -19,30 +20,9 @@ export default function Home() {
   })
 
     const scrollers = document.querySelectorAll(".scroller");
-
-    // If a user hasn't opted in for recuded motion, then we add the animation
     if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       addAnimation();
-
-      let nextDom = document.getElementById('next');
-      let prevDom = document.getElementById('prev');
-
-      let carouselDom = document.querySelector('.carousel');
-      let SliderDom = carouselDom.querySelector('.carousel .list');
-      let thumbnailBorderDom = document.querySelector('.carousel .thumbnail');
-      let thumbnailItemsDom = thumbnailBorderDom.querySelectorAll('.item');
-      let timeDom = document.querySelector('.carousel .time');
-
-      thumbnailBorderDom.appendChild(thumbnailItemsDom[0]);
-      let timeRunning = 3000;
-      let timeAutoNext = 7000;
-      let runTimeOut;
-      let runNextAuto = setTimeout(() => {
-          next.click();
-      }, timeAutoNext)
-      
     }
-
     function addAnimation() {
       scrollers.forEach((scroller) => {
         // add data-animated="true" to every `.scroller` on the page
@@ -63,11 +43,36 @@ export default function Home() {
       });
 
     }
-    
-    
   },[])
-  const showSlider = (type) => {
-    let  SliderItemsDom = document.querySelectorAll('.carousel .list .item');
+
+  useEffect(() => {
+    //step 1: get DOM
+let nextDom = document.getElementById('next');
+let prevDom = document.getElementById('prev');
+
+let carouselDom = document.querySelector('.carousel');
+let SliderDom = carouselDom.querySelector('.carousel .list');
+let thumbnailBorderDom = document.querySelector('.carousel .thumbnail');
+let thumbnailItemsDom = thumbnailBorderDom.querySelectorAll('.item');
+let timeDom = document.querySelector('.carousel .time');
+
+thumbnailBorderDom.appendChild(thumbnailItemsDom[0]);
+let timeRunning = 3000;
+let timeAutoNext = 7000;
+
+nextDom.onclick = function(){
+    showSlider('next');    
+}
+
+prevDom.onclick = function(){
+    showSlider('prev');    
+}
+let runTimeOut;
+let runNextAuto = setTimeout(() => {
+    clickRef.current.click()
+}, timeAutoNext)
+function showSlider(type){
+    let  SliderItemsDom = SliderDom.querySelectorAll('.carousel .list .item');
     let thumbnailItemsDom = document.querySelectorAll('.carousel .thumbnail .item');
     
     if(type === 'next'){
@@ -84,73 +89,30 @@ export default function Home() {
         carouselDom.classList.remove('next');
         carouselDom.classList.remove('prev');
     }, timeRunning);
+
     clearTimeout(runNextAuto);
     runNextAuto = setTimeout(() => {
-        next.click();
+      clickRef.current.click()
     }, timeAutoNext)
-    }
+  }
+  },[])
 
   const menuItems = [
-    "Profile",
-    "Dashboard",
-    "Activity",
-    "Analytics",
-    "System",
-    "Deployments",
-    "My Settings",
-    "Team Settings",
-    "Help & Feedback",
-    "Log Out",
+    "Inicio",
+    "Cuauhtémoc",
+    "Subbsecciones",
+    "Competencias",
+    "Reclutamiento",
   ];
 
   return (
     <main className="w-full">
-          {/* <Navbar onMenuOpenChange={setIsMenuOpen}>
-            <NavbarContent>
-              <NavbarMenuToggle
-                aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-                className="sm:hidden"
-              />
-              <NavbarBrand>
-                <p className="font-bold text-inherit">ACME</p>
-              </NavbarBrand>
-            </NavbarContent>
-
-            <NavbarContent className="hidden sm:flex gap-4" justify="center">
-              <NavbarItem>
-                <Link color="foreground" href="#">
-                  Features
-                </Link>
-              </NavbarItem>
-              <NavbarItem isActive>
-                <Link href="#" aria-current="page">
-                  Customers
-                </Link>
-              </NavbarItem>
-              <NavbarItem>
-                <Link color="foreground" href="#">
-                  Integrations
-                </Link>
-              </NavbarItem>
-            </NavbarContent>
-            <NavbarContent justify="end">
-              <NavbarItem className="hidden lg:flex">
-                <Link href="#">Login</Link>
-              </NavbarItem>
-              <NavbarItem>
-                <Button as={Link} color="primary" href="#" variant="flat">
-                  Sign Up
-                </Button>
-              </NavbarItem>
-            </NavbarContent>
-            <NavbarMenu>
+          <Navbar id="navbar" onMenuOpenChange={setIsMenuOpen} className="text-white p-2 md:p-5 z-50 fixed top-0 left-0 bg-transparent">
+            <NavbarMenu className="bg-black-cuau">
               {menuItems.map((item, index) => (
                 <NavbarMenuItem key={`${item}-${index}`}>
                   <Link
-                    color={
-                      index === 2 ? "primary" : index === menuItems.length - 1 ? "danger" : "foreground"
-                    }
-                    className="w-full"
+                    className="w-full text-white font-bold"
                     href="#"
                     size="lg"
                   >
@@ -159,8 +121,46 @@ export default function Home() {
                 </NavbarMenuItem>
               ))}
             </NavbarMenu>
-          </Navbar> */}
-          <nav id="navbar" className="flex items-center w-full justify-between">
+            <NavbarContent justify="end">
+              <NavbarMenuToggle
+                aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+                className="sm:hidden"
+              />
+              <NavbarBrand>
+                <Image alt="logotipo cuauhtémoc" src="/img/icons/logotipowhite.png" width={60} height={60}/>
+              </NavbarBrand>
+            </NavbarContent>
+
+            <NavbarContent className="hidden sm:flex gap-0" justify="end">
+              <NavbarItem>
+                <Link href="#" className="font-bold text-white">
+                  Inicio
+                </Link>
+              </NavbarItem>
+              <NavbarItem isActive>
+                <Link href="#" aria-current="page" className="font-bold text-white">
+                  Cuauhtémoc
+                </Link>
+              </NavbarItem>
+              <NavbarItem>
+                <Link color="foreground" href="#" className="font-bold text-white">
+                  Subsecciones
+                </Link>
+              </NavbarItem>
+              <NavbarItem>
+                <Link color="foreground" href="#" className="font-bold text-white">
+                  Competencias
+                </Link>
+              </NavbarItem>
+              <NavbarItem>
+                <Link color="foreground" href="#" className="font-bold text-white">
+                  Reclutamiento
+                </Link>
+              </NavbarItem>
+            </NavbarContent>
+            
+          </Navbar>
+          {/* <nav id="navbar" className="flex items-center w-full justify-between z-50">
             <Image alt="logotipo cuauhtémoc" src="/img/icons/logotipowhite.png" width={60} height={60}/>
             <ul className="flex items-center text-white font-bold">
               <li className="mx-4"><a href="#inicio" className="btn-underline">Inicio</a></li>
@@ -169,7 +169,7 @@ export default function Home() {
               <li className="mx-4"><a href="#competencias" className="btn-underline">Competencias</a></li>
               <li className="mx-4"><a href="#reclutamiento" className="btn-underline">Reclutamiento</a></li>
             </ul>
-          </nav>
+          </nav> */}
       <div className="fixed left-2 bottom-4">
         <Image alt="icon instagram" src="/img/icons/instagram.svg" width={30} height={30}/>
         <Image alt="icon facebook" src="/img/icons/facebook.svg" width={30} height={30} className="mt-4"/>
@@ -196,7 +196,7 @@ export default function Home() {
           </div>
         </section>
       </section>
-      <section className="h-48 bg-black w-full flex items-center">
+      <section className="h-48 bg-black w-full flex items-center pb-10">
       <div class="scroller" data-direction="right" data-speed="slow">
         <div class="scroller__inner">
           <Image className="exclusion-mode mx-5 md:mx-16" src="/img/organizaciones/grupossc.png" alt="grupo ssc" width={60} height={100} />
@@ -208,113 +208,105 @@ export default function Home() {
         </div>
       </div>
       </section>
-      <section>
-      
-    <div class="carousel">
-        
-        <div class="list">
-            <div class="item">
-                <Image src="/img/carrusel/image/img1.jpg" alt="carrusel-imagen1" width={60} height={100} layout="responsive"/>
-                <div class="content">
+      <section id="subsecciones" className="carousel">
+       <div className="list">
+            <div className="item">
+                <Image src="/img/carrusel/image/img1.jpg" alt="img 1" width={1000} height={1000}/>
+                <div className="content">
                     
-                    <div class="topic">EPS (Electronic Power System)</div>
-                    <div class="des">
-                        
+                    <div className="topic">EPS (Electronic Power System)</div>
+                    <div className="des">
                         Subsección en cargado de los circuitos y la manufactura de las placas PCB. Agregar más contenido sobre esta subsección y agregar más contenido en el render.
                     </div>
                     
                 </div>
             </div>
-            <div class="item">
-                <Image src="/img/carrusel/image/img2.jpg" alt="carrusel-imagne2" width={60} height={100} layout="responsive"/>
-                <div class="content">
+            <div className="item">
+                <Image src="/img/carrusel/image/img2.jpg" alt="img 2" width={1000} height={1000} />
+                <div className="content">
                     
-                    <div class="topic">Mecanica</div>
-                    <div class="des">
+                    <div className="topic">Mecanica</div>
+                    <div className="des">
                         Mecanica es el diseño de estructuras, manufactura de las piezas que component el satelite, diseño y analizis para asegurarse de que el satelite soporte todos los esfuerzos a los que será sometido durante la competencia.
                     </div>
                     
                 </div>
             </div>
-            <div class="item">
-                <Image src="/img/carrusel/image/img3.jpg" alt="carrusel-imagne3" width={60} height={100} layout="responsive"/>
-                <div class="content">
+            <div className="item">
+                <Image src="/img/carrusel/image/img3.jpg" alt="img3" width={1000} height={1000}/>
+                <div className="content">
                     
-                    <div class="topic">Aarodinamica</div>
-                    <div class="des">
+                    <div className="topic">Aarodinamica</div>
+                    <div className="des">
                         Aerodinámica es la subsección encargada de hacer los cálculos necesarios para la fabricación de paracaídas, asegurando la recuperación de los prototipos.
                     </div>
                     
                 </div>
             </div>
-            <div class="item">
-                <Image src="/img/carrusel/image/img4.jpg" alt="carrusel-imagen4" width={60} height={100} layout="responsive"/>
-                <div class="content">
+            <div className="item">
+                <Image src="/img/carrusel/image/img4.jpg" alt="img4" width={1000} height={1000}/>
+                <div className="content">
                     
-                    <div class="topic">CCH</div>
-                    <div class="des">
+                    <div className="topic">CCH</div>
+                    <div className="des">
                         CDH es el encargado de la programción de los prototipos, además de crear una interfaz que sea capaz de mostrar los datos en tiempo real que transmite el satélite al momento del vuelo.
                     </div>
                     
                 </div>
             </div>
-        </div>        
-        <div class="thumbnail">
-            <div class="item">
-                <Image src="/img/carrusel/image/img1.jpg"  alt="imgcar1" width={60} height={100} />
-                <div class="content">
-                    <div class="title">
+        </div>
+        <div className="thumbnail">
+            <div className="item">
+                <Image src="/img/carrusel/image/img1.jpg" alt="img1" width={1000} height={1000}/>
+                <div className="content">
+                    <div className="title font-bold">
                         EPS
                     </div>
-                    <div class="description">
+                    <div className="description">
                         
                     </div>
                 </div>
             </div>
-            <div class="item">
-                <Image src="/img/carrusel/image/img2.jpg"  alt="imgcar2" width={60} height={100}/>
-                <div class="content">
-                    <div class="title">
+            <div className="item">
+                <Image src="/img/carrusel/image/img2.jpg" alt="img2" width={1000} height={1000}/>
+                <div className="content">
+                    <div className="title font-bold">
                         Mecanica
                     </div>
-                    <div class="description">
+                    <div className="description">
                         
                     </div>
                 </div>
             </div>
-            <div class="item">
-                <Image src="/img/carrusel/image/img3.jpg" alt="imgcar3" width={60} height={100}/>
-                <div class="content">
-                    <div class="title">
+            <div className="item">
+                <Image src="/img/carrusel/image/img3.jpg" alt="img3" width={1000} height={1000}/>
+                <div className="content">
+                    <div className="title font-bold">
                         Aerodinámica
                     </div>
-                    <div class="description">
+                    <div className="description">
                         
                     </div>
                 </div>
             </div>
-            <div class="item">
-                <Image src="/img/carrusel/image/img4.jpg" alt="imgcar4" width={60} height={100}/>
-                <div class="content">
-                    <div class="title">
+            <div className="item">
+                <Image src="/img/carrusel/image/img4.jpg" alt="img4" width={1000} height={1000}/>
+                <div className="content">
+                    <div className="title font-bold">
                         CCH
                     </div>
-                    <div class="description">
+                    <div className="description">
                         
                     </div>
                 </div>
             </div>
         </div>
-        
-        <div class="arrows">
-            <button id="prev" onClick={()=> showSlider("prev")}>prev</button>
-            <button id="next" onClick={()=> showSlider("next")}>next</button>
+        <div className="arrows">
+            <button id="prev">prev</button>
+            <button id="next" ref={clickRef}>next</button>
         </div>
-        
-        <div class="time"></div>
-    </div>
-
-      </section>
+        <div className="time"></div>
+    </section>
       <section className="w-full h-80 bg-frase bg-cover md:bg-contain flex justify-center items-center border-y-2 border-y-white">
         <h3 className="text-white text-4xl font-bold text-center">Otra frase motivacional.</h3>
       </section>
