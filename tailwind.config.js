@@ -12,7 +12,7 @@ module.exports = {
       backgroundImage: {
         'hero-login': "url('/img/bg/mountain.jpg')",
         'home-loading':"url('/img/bg/bgLoading.jpg')",
-        'frase': "url('/img/bg/frase.png')"
+        'frase': "url('/img/bg/cucei2023.jpg')"
       },
       colors: {
         'ipn-color': "#A5004F",

@@ -138,22 +138,22 @@ function showSlider(type){
                 </Link>
               </NavbarItem>
               <NavbarItem isActive>
-                <Link href="#" aria-current="page" className="font-bold text-white">
+                <Link href="#cuauhtemoc" aria-current="page" className="font-bold text-white">
                   Cuauhtémoc
                 </Link>
               </NavbarItem>
               <NavbarItem>
-                <Link color="foreground" href="#" className="font-bold text-white">
+                <Link color="foreground" href="#subsecciones" className="font-bold text-white">
                   Subsecciones
                 </Link>
               </NavbarItem>
               <NavbarItem>
-                <Link color="foreground" href="#" className="font-bold text-white">
+                <Link color="foreground" href="#competencias" className="font-bold text-white">
                   Competencias
                 </Link>
               </NavbarItem>
               <NavbarItem>
-                <Link color="foreground" href="#" className="font-bold text-white">
+                <Link color="foreground" href="#reclutamiento" className="font-bold text-white">
                   Reclutamiento
                 </Link>
               </NavbarItem>
@@ -179,7 +179,7 @@ function showSlider(type){
           <h1 className="font-bold text-white text-5xl md:text-7xl text-center mb-12 italic">CUAUHTÉMOC<br/><span className="text-ipn-color">IPN</span></h1>
           <div className="text-white text-base pl-5">
             <h2 className=" text-2xl md:text-4xl italic font-bold">Vuela con nosotros...</h2>
-            <p className="my-2 mb-10 md:mb-5">Eslogan o frase para el homepage<br/>que tenga contenido de almenos 3 lineas.</p>
+            <p className="my-2 mb-10 md:mb-5 font-bold">En Cuauhtémoc IPN, la innovación se eleva al espacio<br/>con la pasión y dedicación de cada miembro. 🚀</p>
             <a className="text-white font-bold px-2 py-2 border-1 rounded-md hover:text-black hover:bg-white transition-all" variant="bordered" href="#cuauhtemoc">
               Conocenos...
             </a>  
@@ -188,11 +188,11 @@ function showSlider(type){
         <section id="cuauhtemoc" className="w-full h-screen flex items-center flex-col md:flex-row">
           <div className="w-11/12 md:w-1/2 flex flex-col items-center">
             <Image alt="img de cuauhtémoc" src="/img/ilustrate/cuauhtemoc.png" width={600} height={500}/>
-            <p className="text-base text-white">“Leyenda motivacional del equipo.”</p>
+            <p className="text-base text-white">“Cuauhtémoc IPN: Innovando en el espacio, elevando el nombre de nuestra institución.”</p>
           </div>
           <div className="w-11/12 mt-10 md:mt-0 md:w-1/2 flex flex-col items-center">
             <h2 className="text-center text-white font-bold mb-10 text-4xl">CUAUHTÉMOC IPN<br/>AEROESPACE</h2>
-            <p className="text-white leading-8 text-justify w-11/12 md:w-3/4">Historia de cuauhtémoc, de cuando fue fundado quienes lo conforman, lo que hacemos dentro del equipo, el laboratorio las instalaciones y las maquinas con las que contamos dentro del equipo, las competencias, algunos detalles de por que destacamos como equipo y una foto de lado izquierdo que represente al equipo.</p>
+            <p className="text-white leading-8 text-justify w-11/12 md:w-3/4">Cuauhtémoc IPN, fundado en 2017, inició su trayectoria compitiendo en competencias nacionales con satélites CanSat, integrado por al menos 7 estudiantes de ESIME Ticoman.<br/>Hoy en día, somos un equipo interdisciplinario de más de 30 miembros, destacando en competencias internacionales con el tercer lugar a nivel mundial y el primer lugar en Latinoamérica. Nos dedicamos a innovar y llevar en alto el nombre de nuestra institución, reconociendo que cada miembro es esencial para nuestro éxito.</p>
           </div>
         </section>
       </section>
@@ -307,8 +307,8 @@ function showSlider(type){
         </div>
         <div className="time"></div>
     </section>
-      <section className="w-full h-80 bg-frase bg-cover md:bg-contain flex justify-center items-center border-y-2 border-y-white">
-        <h3 className="text-white text-4xl font-bold text-center">Otra frase motivacional.</h3>
+      <section className="w-full h-80 bg-frase bg-cover bg-no-repeat md:bg-contain flex justify-center items-center border-y-2 border-y-white">
+        <h3 className="text-white text-2xl md:text-4xl font-bold text-center px-4 md:px-0">El éxito de Cuauhtémoc, radica en cada miembro del equipo.</h3>
       </section>
       <section id="competencias" className="w-full min-h-screen bg-black-cuau text-white flex flex-col justify-evenly items-center pb-10">
         <div className="w-full flex flex-col items-center">
@@ -331,8 +331,8 @@ function showSlider(type){
               <div class="container cucei-color">
                 <div class="box box-cucei">
                 <Image alt="competition 2023" src="/img/competencias/CanSatCucei.png" width={195} height={136}/>
-                <h3 className="text-white font-bold text-lg my-2">CanSat Cucei 2023</h3>
-                <p className="text-white text-xs leading-4 text-justify">Esta competencia se realizo en Virginia E.U. Participaron 40 equipos de los cuales 20 eran de E.u. y el resto de los equipos de diferentes países, entre ellos, Polonia, China, Francia etc.</p>
+                <h3 className="text-white font-bold text-lg my-2">CanSat Cucei 2022</h3>
+                <p className="text-white text-xs leading-4 text-justify">LLevada a cabo en Guadalajara, en esta competencia se realizo un satélite tipo CanSat, el cual fue elevado a 500m de altura con ayuda de un drone.</p>
                 </div>
               </div>
             </div>
@@ -340,8 +340,9 @@ function showSlider(type){
               <div class="container comeback-color">
                 <div class="box box-comeback">
                 <Image alt="competition 2023" src="/img/competencias/Comeback.png" width={195} height={136}/>
-                <h3 className="text-white font-bold text-lg my-2">Comeback 2023</h3>
-                <p className="text-white text-xs leading-4 text-justify">Esta competencia se realizo en Virginia E.U. Participaron 40 equipos de los cuales 20 eran de E.u. y el resto de los equipos de diferentes países, entre ellos, Polonia, China, Francia etc.</p>
+                <h3 className="text-white font-bold text-lg my-2">Comeback 2022</h3>
+                <p className="text-white text-xs leading-4 text-justify">Esta competencia se realizo en Queretaro. 
+                El prototipo de este satélite de tipo robert, simulando una misión de marte, donde en cuanto el robert aterrzara, tenía que regresar a su punto de lanzamiento inicial.</p>
                 </div>
               </div>
             </div>
@@ -372,12 +373,12 @@ function showSlider(type){
             <div>
               <h3>Redes sociales</h3>
               <div>
-              <button class="Btn">
+              <a href="https://www.instagram.com/cuauhtemocipn/" target="_blank" class="Btn">
               <span class="svgContainer">
                 <svg fill="white" class="svgIcon" viewBox="0 0 448 512" height="1.5em" xmlns="http://www.w3.org/2000/svg"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"></path></svg>
               </span>
               <span class="BG"></span>
-              </button>
+              </a>
               </div>
             </div>
           </div>
