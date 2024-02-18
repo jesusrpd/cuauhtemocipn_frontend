@@ -133,7 +133,7 @@ function showSlider(type){
 
             <NavbarContent className="hidden sm:flex gap-0" justify="end">
               <NavbarItem>
-                <Link href="#" className="font-bold text-white">
+                <Link href="#inicio" className="font-bold text-white">
                   Inicio
                 </Link>
               </NavbarItem>
