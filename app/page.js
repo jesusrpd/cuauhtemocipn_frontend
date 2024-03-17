@@ -170,9 +170,9 @@ function showSlider(type){
               <li className="mx-4"><a href="#reclutamiento" className="btn-underline">Reclutamiento</a></li>
             </ul>
           </nav> */}
-      <div className="fixed left-2 bottom-4">
-        <Image alt="icon instagram" src="/img/icons/instagram.svg" width={30} height={30}/>
-        <Image alt="icon facebook" src="/img/icons/facebook.svg" width={30} height={30} className="mt-4"/>
+      <div className="fixed left-2 bottom-4 flex flex-col">
+        <Link className="bg-black-cuau rounded-md my-1" href="https://www.instagram.com/cuauhtemocipn/"><Image alt="icon instagram" src="/img/icons/instagram.svg" width={30} height={30}/></Link>
+        <Link className="bg-black-cuau rounded-md my-1" href="https://www.facebook.com/CuauhtemocIPN"><Image alt="icon facebook" src="/img/icons/facebook.svg" width={30} height={30} className="rounded-md"/></Link>
       </div>
       <section className="min-h-screen w-full bg-home-loading bg-cover bg-no-repeat">
         <section id="inicio" className="w-full h-screen flex flex-col justify-center">
@@ -205,6 +205,8 @@ function showSlider(type){
           <Image className="exclusion-mode mx-5 md:mx-10" src="/img/organizaciones/cuauhtemoc.png" alt="cuauhtémoc" width={150} height={50} />
           <Image className="exclusion-mode mx-5 md:mx-10" src="/img/organizaciones/pcbmexico.png" alt="pcb méxico" width={300} height={50} />
           <Image className="exclusion-mode mx-5 md:mx-10" src="/img/organizaciones/fundacionpolitecnico.png" alt="fundación politecnico" width={150} height={50} />
+          <Image className="exclusion-mode mx-5 md:mx-10" src="/img/organizaciones/ansys.png" alt="Ansys" width={150} height={40} />
+          <Image className="exclusion-mode mx-5 md:mx-10" src="/img/organizaciones/altair.png" alt="Altair" width={200} height={100} />
         </div>
       </div>
       </section>
@@ -307,7 +309,7 @@ function showSlider(type){
         </div>
         <div className="time"></div>
     </section>
-      <section className="w-full h-80 bg-frase bg-cover bg-no-repeat md:bg-contain flex justify-center items-center border-y-2 border-y-white">
+      <section className="w-full h-80 bg-frase bg-cover bg-no-repeat md:bg-cover flex justify-center items-center border-y-2 border-y-white">
         <h3 className="text-white text-2xl md:text-4xl font-bold text-center px-4 md:px-0">El éxito de Cuauhtémoc, radica en cada miembro del equipo.</h3>
       </section>
       <section id="competencias" className="w-full min-h-screen bg-black-cuau text-white flex flex-col justify-evenly items-center pb-10">
